@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} | Edit {{ suspect.first_name }} {% endblock %}
+{% block content %}
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+<div class="container">
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'home' %}">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="{% url 'suspects' %}">All Suspects</a>
+      </li>
+      <li class="breadcrumb-item active">{{ suspect.first_name }}</li>
+    </ol>
+  </nav>
+</div>
+</section>
+
+<section id="suspect" class="py-4">
+  <div class="container">
+  <h1>Edit Suspect</h1>
+  {% if request.user.is_staff  %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-info" type="submit">Update</button>
+    </form>
+    {% else %}
+    <div class="row">
+      <div class="col mt-5">
+          <h1 class="display-4">You cannot edit a criminal record if you are not an officer</h1>
+      </div>
+      <div class="col">
+          <img src="{% static 'img/suspect.jpeg' %}" class="img-fluid" alt="Responsive image" title="locked book">
+      </div>
+    </div> 
+    {% endif%}
+</div>
+ </section>
+{% endblock %}

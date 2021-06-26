@@ -1,0 +1,47 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+{% block title %} | Edit Profile {% endblock %} {% block content %} 
+<div class="container mt-5">
+{% if user.is_authenticated %} 
+    {% if user.id == profile.user.id %}
+    <div class="row">
+        <h1 class="display-4">Edit Profile</h1>
+    </div>
+    <hr>
+    <div class="row">
+        <h3>Welcome, {% if user.is_staff %} Officer {% endif %} {% if user.last_name %}{{ user.last_name|capfirst }} {% else %} {{ user.username|capfirst }}{% endif %}</h3>
+    </div>
+    <div class="form-group">
+        <p>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="btn btn-info" type="submit"><i class="fas fa-pen-alt"></i> Update Profile</button>
+            </form>
+            <form method="GET" action="{% url 'profile' user.profile.id %}">
+                <button id="cancel" class="btn btn-warning" type="submit"><i class="far fa-window-close"></i> Cancel</button>
+            </form>
+        </p>
+    </div>
+    {% elif profile.user.id == None %}
+    <div class="row">
+        <div class="col mt-5">
+            <h1 class="display-4">You are not allowed here</h1>
+        </div>
+        <div class="col">
+            <img src="{% static 'img/crime-scene.png' %}" class="img-fluid" alt="Responsive image" title="crime-scene">
+        </div>
+    </div> 
+    {% else %}
+    <div class="row">
+        <div class="col mt-5">
+            <h1 class="display-4">This is not your profile to edit</h1>
+        </div>
+        <div class="col">
+            <img src="{% static 'img/crime-scene.png' %}" class="img-fluid" alt="Responsive image" title="crime-scene">
+        </div>
+    </div>
+    {% endif %} 
+{% endif %} 
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<div class="modal fade" id="crimeModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="inquiryModalLabel">Quick Crime Report</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'report' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <small class="">Add a suspect to the database first if unavailable in the dropdown, or leave it blank and update the crime details later.</small>
+            <br>
+            <i class="far fa-arrow-alt-circle-down"></i>  <small>(This will direct you to a new page).</small>
+            <br>
+            
+            <a href="{% url 'suspects' %}" class="btn btn-info btn-sm mt-2">Add Suspect</a>
+            <hr>
+            {{ form.as_p }}
+            <hr>
+            
+            <input type="submit" value="Send" class="btn btn-block btn-success">
+          </form>
+        </div>
+    </div>
+</div>

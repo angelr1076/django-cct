@@ -1,0 +1,49 @@
+{% extends 'base.html' %} 
+{% block title %} | Create Profile {% endblock %} {% block content %} 
+<div class="container mt-5">
+{% if user.is_authenticated %}
+
+<div class="row">
+    <h1 class="display-4">Create Profile</h1>
+</div>
+<hr>
+<div class="row">
+    <h3>Welcome, 
+        {% if user.is_staff %} 
+            Officer 
+        {% endif %} 
+        {% if user.first_name and user.last_name %}
+            {{ user.first_name|capfirst }} {{ user.last_name|capfirst }} 
+        {% elif not user.first_name and user.last_name %}
+            {{ user.last_name|capfirst }} 
+        {% else %} 
+            {{ user.username|capfirst }}
+        {% endif %}
+    </h3>
+</div>
+<br>
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            {% csrf_token %} {{ form.as_p }}
+            <button class="btn btn-info">Create Profile</button>
+            <button type="button" class="btn btn-warning" onclick="$('#cancel').click()">Cancel</button>
+        </div>
+    </form>
+    <form style='display: none;' method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <button id="cancel" type="submit">Cancel</button>
+    </form>
+</div>
+</form>
+</div>
+
+
+{% else %}
+
+<h1 class="display-1 text-center p-5 m-5">You are not allowed here</h1>
+
+{% endif %} 
+
+</div>
+{% endblock %}

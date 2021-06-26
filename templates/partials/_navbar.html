@@ -1,0 +1,142 @@
+{% load static %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+  <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'img/cct-logo-alt.png' %}" class="logo" alt="security logo" title="Home">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse lead" id="navbarNavAltMarkup">
+    <ul class="navbar-nav">
+     
+      <li 
+      {% if 'crimes' in request.path %}
+        class="nav-item active mr-3"
+        {% else %}
+        class="nav-item mr-3"
+      {% endif %}
+      >
+        <!--Crime dropdown-->
+        <p>
+          <a class="nav-link" data-toggle="collapse" href="#collapseCrime" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <span class="badge badge-dark ">{{ crime_total }}</span> Crimes
+          </a>
+        </p>
+        <div class="collapse" id="collapseCrime">
+          <div class="card card-body text-dark">
+            <a class="nav-link text-dark" href="{% url 'crimes' %}"><h6 class="small font-weight-light">Crimes</h6></a>
+            {% if user.is_authenticated %}
+            <a class="nav-link text-dark" href="{% url 'usercrimelist' %}"><h6 class="small font-weight-light">Your Crime List</h6></a>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+      <li 
+      {% if 'suspect' in request.path %}
+        class="nav-item active mr-3"
+        {% else %}
+        class="nav-item mr-3"
+      {% endif %}
+      >
+        <!--Suspect dropdown-->
+        <p>
+          <a class="nav-link" data-toggle="collapse" href="#collapseSuspect" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <span class="badge badge-dark ">{{ suspect_total }}</span> Suspects
+          </a>
+        </p>
+        <div class="collapse" id="collapseSuspect">
+          <div class="card card-body text-dark">
+            <a class="nav-link text-dark" href="{% url 'suspects' %}"><h6 class="small font-weight-light">Suspects</h6></a>
+            {% if user.is_authenticated %}
+            <a class="nav-link text-dark" href="{% url 'usersuspectlist' %}"><h6 class="small font-weight-light">Your Suspect List</h6></a>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+       <li 
+      {% if 'officer' in request.path %}
+        class="nav-item active mr-3"
+        {% else %}
+        class="nav-item mr-3"
+      {% endif %}
+      >
+        <a class="nav-link" href="{% url 'officers' %}"><span class="badge badge-dark ">{{ officer_total }}</span> Officers</a>
+      </li>
+        <!-- Button reg modal -->
+      <li class="nav-item mr-3">
+         <a class="nav-link" data-toggle="modal" data-target="#aboutModal"><i class="fas fa-question-circle"></i> About</a>
+      </li>
+      {% if not user.is_authenticated %}
+        <!-- Button important modal -->
+        <li class="nav-item mr-3">
+           <a class="nav-link" data-toggle="modal" data-target="#regModal"><i class="fas fa-exclamation-triangle"></i> Important</a>
+        </li>
+      {% endif %}
+    </ul>
+    <ul class="navbar-nav ml-auto">
+    {% if user.is_authenticated %}
+      {% if user.profile.id %}
+        <!--View Profile-->
+        <li 
+        {% if 'profile' in request.path %}
+          class="nav-item active mr-3"
+          {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+        >
+          <a class="nav-link" href="{% url 'profile' user.profile.id %}" title="View Profile">
+            <i class="far fa-user-circle"></i>
+            Welcome, {% if user.is_staff %} Officer {% endif %} {% if user.first_name %} {{ user.first_name }} {% else %} {{ user.username | capfirst }} {% endif %}</a>
+        </li>
+      {% else %}
+        <!--Create profile-->
+         <li 
+        {% if 'createprofile' in request.path %}
+          class="nav-item active mr-3"
+          {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+        >
+          <a class="nav-link" href="{% url 'createprofile' %}" title="Create Profile">
+            <i class="fas fa-user-circle"></i>
+            Welcome, {% if user.is_staff %} Officer {% endif %} {% if user.first_name %} {{ user.first_name }} {% else %} {{ user.username | capfirst }} {% endif %}</a>
+        </li>
+      {% endif %}
+        <!--Logout-->
+        <li class="nav-item mr-3">
+          <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+          <form action="{% url 'logoutuser' %}" method="POST" id="logout">
+            {% csrf_token %}
+            <input type="hidden">
+          </form>
+        </li>
+      {% else %}
+        <li 
+        {% if 'register' in request.path %}
+          class="nav-item active mr-3"
+          {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+        >
+          <a class="nav-link" href="{% url 'register' %}">
+            <i class="fas fa-user-plus"></i>
+            Register</a>
+        </li>
+        <li 
+        {% if 'login' in request.path %}
+          class="nav-item active mr-3"
+          {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+        >
+          <a class="nav-link" href="{% url 'loginuser' %}">
+            <i class="fas fa-sign-in-alt"></i>
+            Login</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

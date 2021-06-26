@@ -1,0 +1,48 @@
+{% extends 'base.html' %} 
+
+{% load static %} {% block title %} | {{user.first_name }}'s Profile {% endblock %} 
+
+{% block content %}
+
+<div class="container">
+  <div class="jumbotron pt-5 mt-5">
+    {% if user.is_authenticated %}
+    <div class="row">
+      <h3>{% if user.is_staff %} Officer {% endif %} {% if user.is_staff and user.last_name %}{{ user.last_name|capfirst }} {% else %} {{ user.first_name }} {{ user.last_name }} {% endif %}</h3>
+    </div>
+    <hr>
+    <div class="col-md-2">
+      {% if page_user.profile_pic %}
+        <img src="{{ page_user.profile_pic.url }}" class="img-fluid img-thumbnail" alt="profile pic"> 
+      {% elif user.is_staff and not page_user.profile_pic %}
+        <img src="{% static 'img/cop_avatar.jpeg'  %}" class="img-thumbnail" alt="officer profile pic"> 
+      {% else %}
+        <img src="{% static 'img/avatar.jpeg'  %}" class="img-fluid" alt="alt profile pic"> 
+      {% endif %}
+    </div>
+    <hr>
+    <p class=""><u>Bio:</u></label>
+    <p class="card-text">{{ page_user.bio }}</p>
+
+    {% if user.id == page_user.user.id %}
+      <p class="lead mt-3 pt-3">
+        <a class="btn btn-warning" href="{% url 'editprofile' user.profile.id %}" role="button"><i class="fas fa-user-edit"></i> Edit Profile</a>
+        <a class="btn btn-info" href="{% url 'usercrimelist' %}" role="button"><i class="fas fa-list"></i> Crimes You Reported</a>
+        <a class="btn btn-success" href="{% url 'usersuspectlist' %}" role="button"><i class="fas fa-users"></i> Suspects You Reported</a>
+      </p>
+    {% endif %}
+    {% else %}
+      <div class="row">
+        <div class="col mt-5">
+          <h1 class="display-4">You must be logged in to view a user's profile.</h1>
+        </div>
+        <div class="col">
+          <img src="{% static 'img/security-camera.jpg'  %}" class="img-fluid" alt="Responsive image" title="security camera">
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+    
+
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} | {{ crime.crime_type }} {% endblock %}
+{% block content %}
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'crimes' %}">All Crimes</a>
+        </li>
+        <li class="breadcrumb-item active">{{ crime.address }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- Crime Scene -->
+<section id="crime" class="py-4">
+  <div class="container">
+    {% if user.is_authenticated %}
+    <a href="{% url 'crimes' %}" class="btn btn-light mb-4">Back To All Crimes</a>
+    <div class="row">
+      <div class="col-md-9">
+        <!-- Dynamic Fields -->
+        <div class="row mb-5 fields">
+           <div class="col-md-6">
+                {% if crime.photo_main %}
+                  <img class="crime-img" src="{{ crime.photo_main.url }}" style="border-radius:5px;">
+                {% else %}
+                  <img class="crime-img" src="{% static 'img/crimescene.jpg' %}" style="border-radius:5px;">
+                {% endif %}
+                  <figcaption class="figure-caption">Image from crime scene</figcaption>
+            </div>
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-info">
+                Crime:
+                <span class="float-right">{{ crime.crime_type }}</span>
+              </li>
+              <li class="list-group-item text-info">
+                Location:
+                <span class="float-right">{{ crime.address }} <br> {{ crime.city }}, {{ crime.state }}</span>
+              </li>
+              <li class="list-group-item text-info">
+                Crime Date:
+                <span class="float-right">{{ crime.crime_date }}</span>
+              </li>
+              <li class="list-group-item text-info">
+                Suspect's Status:
+                {% if crime.suspect.in_custody is True %}
+                <span class="float-right">Apprehended</span>
+                {% else %}
+                <span class="float-right">On the run</span>
+                {% endif %}
+              </li>
+              <li class="list-group-item text-info">
+                Reported By:
+                {% if crime.reported_by is not AnonymousUser %}
+                  <span class="float-right"> {{ crime.reported_by | capfirst }}</span>
+                {% else %}
+                  <span class="float-right"> Anonymously reported</span>
+                {% endif %}
+              </li>
+              <li class="list-group-item text-info">
+                Solved:
+                {% if crime.solved == 1 %}
+                  <span class="float-right"> Yes</span>
+                {% else %}
+                  <span class="float-right"> Still invesigating</span>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <!-- Description -->
+        <div class="row mb-3">
+          <div class="col-md-9">
+            <p class="lead"><b>Details:</b> {{ crime.description }}</p>
+          </div>
+        </div>
+        {% if request.user.is_staff and not crime.solved %}
+          <a class="btn btn-info btn-lg m-3" href="{% url 'editcrime' crime.id %}"><i class="far fa-folder-open"></i> Update Details</a>
+        {% else %}
+          <ol>
+            <small><li style="color:grey">Only officers can edit crimes</li></small>
+            <small><li style="color:grey">Crime records cannot be updated if the crime has been solved</li></small>
+          </ol>
+          <br>
+          <button class="btn btn-outline-danger" disabled><i class="far fa-folder-open"></i> Update</button>
+        {% endif %}
+      </div>
+       <div class="col-md-3">
+         <!--Suspect image card-->
+        <div class="card mb-3" style="border:none;">
+          {% if crime.suspect.mugshot %}
+            <img class="card-img-top" src="{{ crime.suspect.mugshot.url }}" alt="suspect image">
+          {% else %}
+            <img class="card-img-top" src="{% static 'img/suspect.jpeg' %}" alt="suspect image">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title lead">Suspect</h5>
+            {% if crime.suspect %}
+              <h6 class="lead text-danger pb-3">{{ crime.suspect }}</h6>
+              <a href="{% url 'suspect' crime.suspect.id %}" class="btn btn-warning"><i class="far fa-user"></i> View Suspect</a>
+            {% else %}
+              <h6 class="lead pb-3">No suspects identified, yet.</h6>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="row">
+      <div class="col mt-5">
+          <h1 class="display-4">You need to register and login to view crime info</h1>
+      </div>
+      <div class="col">
+          <img src="{% static 'img/crime-scene.png' %}" class="img-fluid" alt="Responsive image" title="crime scene">
+      </div>
+    </div> 
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

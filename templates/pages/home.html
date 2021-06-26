@@ -1,0 +1,42 @@
+{% extends 'base.html' %} 
+
+{% load static  %}
+{% block title %} | Welcome To CCT {% endblock %}
+{% block content %}
+
+  <section id="cover-home" class="cover-home p-0">
+  </section>
+  <section id="services" class="services py-5 bg-secondary text-white">
+    <div class="container">
+      {% if error %}
+        <h1>{{Error}}</h1>
+      {% endif %}
+      <div class="row text-center">
+        <div class="col-md-4">
+          <i class="fas fa-comment fa-4x mr-4"></i>
+          <hr>
+          <a class="report-crime" data-toggle="modal" data-target="#crimeModal" href=""><h3>Report A Crime</h3></a>
+          <p>Report a crime by filing a complaint with our Web Crime Complaint Center. Contact us via the electronic crime reporting form 24 hours a day. We will work quickly to solve this crime and restore peace.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-gavel fa-4x mr-4"></i>
+          <hr>
+          <a class="follow-crime" href="{% url 'crimes'  %}"><h3><span class="badge badge-light" title="Live crime count">{{ crime_total }}</span>  Follow Crimes</h3></a>
+          <p>Follow crimes that have been reported and logged into our database. Users that are logged in are privy to crime details that the general public is not allowed to view.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-user-secret fa-4x mr-4"></i>
+          <hr>
+          <a class="track-suspects" href="{% url 'suspects'  %}"><h3><span class="badge badge-light" title="Live suspect count">{{ suspect_total }}</span> Track Suspects</h3></a>
+          <p>Follow suspects that have been reported and logged into our database. Users that are logged in are privy to a suspects details that the general public is not allowed to view.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="crime__modal-window">
+<!-- Crime Report Modal -->
+{% include 'partials/_crimemodal.html' %}
+</section>
+</div>
+{% endblock %}

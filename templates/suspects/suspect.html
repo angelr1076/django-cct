@@ -1,0 +1,105 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} | {{ suspect.first_name }} {% endblock %}
+{% block content %}
+
+<!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'suspects' %}">All Suspects</a>
+          </li>
+          <li class="breadcrumb-item active">{{ suspect.first_name }}</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Crime Scene -->
+  <section id="crime" class="py-4">
+    <div class="container">
+      {% if user.is_authenticated %}
+      <a href="{% url 'suspects' %}" class="btn btn-light mb-4">Back To All Suspects</a>
+      
+      <h1 class="display-4 mb-3">{{ suspect.first_name }} {{ suspect.last_name }}</h1>
+      <hr class="pb-3">
+          <!-- Dynamic Fields -->
+          <div class="row mb-5 fields">
+            <div class="col-md-4">
+              <div class="card mb-3" style="border:none;">
+                {% if suspect.mugshot %}
+                <img class="card-img-top" src="{{ suspect.mugshot.url }}" alt="suspect image" title="{{ suspect.last_name }}">
+                {% else %}
+                <img class="card-img-top" src="{% static 'img/suspect.jpeg' %}" alt="suspect image" title="default mugshot">
+                {% endif %}
+                
+                <div class="card-body">
+                  {% if suspect.in_custody is False %}
+                  <h3 class="lead">Status: On the run</h3>
+                  {% else %}
+                  <h3 class="lead">Status: Apprehended</h3>
+                  {% endif %}
+                  {% if suspect.reported_by %}
+                    <figcaption class="figure-caption">Reported by: {{ suspect.reported_by }}</figcaption>
+                  {% else %}
+                    <figcaption class="figure-caption">Anonymously reported</figcaption>
+                  {% endif %}
+                </div>
+              </div>
+              <hr>
+              
+              <div class="row">
+                {% if request.user.is_staff and not suspect.in_custody  %}
+                  <a href="{% url 'editsuspect' suspect.id %}" class="btn btn-info btn-lg m-3"><i class="fas fa-portrait"></i> Update</a>
+                {% else %}
+                <ol>
+                  <small><li style="color:grey">You need to be officer to edit a criminal record</li></small>
+                  <small><li style="color:grey">Criminal records cannot be updated if the suspect has been apprehended</li></small>
+                </ol>
+                <br>
+                <button class="btn btn-outline-danger" disabled><i class="fas fa-portrait"></i> Update</button>
+                {% endif %}
+              </div>
+            </div>
+            
+            <div class="col-md-6 text-info">
+              <i class="fas fa-exclamation-triangle -alt"></i> <span class="mb-2">{{ suspect.first_name }} committed:</span>
+              <ul class="list-group mt-3">
+                {% if crimes %}
+                  {% for crime in crimes %}
+                  <li class="list-group-item"><a class="text-info" href="{% url 'crime' crime.id %}">{{ crime }} - {{ crime.address }}, {{ crime.city }}, {{ crime.state }} <br>On {{ crime.crime_date }}</a></li>
+                  {% endfor %}
+                {% else %}
+                  <li class="list-group-item text-info">No crime record found</li>
+                {% endif %}
+              </ul>
+              <hr>
+              <!-- Description -->
+                <div class="row mt-5">
+                  <div class="col-md-12">
+                    <span class="lead text-dark">Profile: {{ suspect.description }}</span>
+                  </div>
+                </div>
+                <hr>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+      <div class="col mt-5">
+          <h1 class="display-4">You need to register and login to view individual suspect info</h1>
+      </div>
+      <div class="col">
+          <img src="{% static 'img/suspect.jpeg' %}" class="img-fluid" alt="Responsive image" title="locked book">
+      </div>
+    </div> 
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

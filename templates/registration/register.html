@@ -1,0 +1,59 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block title %} | Register {% endblock %} 
+
+{% block content %}
+<div class="container pb-3 w-50">
+    <div class="row">
+        <div class="col mt-1">
+            <img src="{% static 'img/cct-logo.png' %}" class="img-fluid" alt="Responsive image" title="main logo">
+            <h2>Register...</h2>
+            <form method="POST">
+                <div class="form-group">
+                    {% csrf_token %} {{ error }}
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" class="form-control" id="first_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" id="last_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp" required>
+                        <small id="usernameHelp" class="form-text text-muted">Your username must be unique. We'll let you know if someone has already taken it.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password1">Password</label>
+                        <input type="password" name="password1" class="form-control" id="password1" placeholder="********">
+                    </div>
+                    <div class="form-group">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" name="password2" class="form-control" id="password2" placeholder="********">
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-outline-primary btn-lg">Register</button>
+            </form>
+            <small>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item">Your password can't be too similar to your other personal information.</li>
+                    <li class="list-group-item">Your password must contain at least 8 characters.</li>
+                    <li class="list-group-item">Your password can't be a commonly used password.</li>
+                    <li class="list-group-item">Your password can't be entirely numeric.</li>
+                    <li class="list-group-item"></li>
+                </ul>
+            </small>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+ 
