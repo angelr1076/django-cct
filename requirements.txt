@@ -38,7 +38,7 @@ MarkupSafe==1.1.1
 openpyxl==3.0.4
 pexpect==4.8.0
 Pillow==7.2.0
-protobuf==3.12.4
+protobuf==3.18.3
 psycopg2==2.8.6
 ptyprocess==0.7.0
 pycodestyle==2.6.0
