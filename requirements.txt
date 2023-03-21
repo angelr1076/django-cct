@@ -54,5 +54,5 @@ termcolor==1.1.0
 toml==0.10.1
 urllib3==1.25.9
 virtualenv==20.0.30
-Werkzeug==1.0.1
+Werkzeug==2.2.3
 whitenoise==5.2.0
