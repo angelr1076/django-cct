@@ -14,7 +14,6 @@ from django.contrib.messages import constants as messages
 from pathlib import Path
 import environ
 import os
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +29,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['https://casecrimetrace-django.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -163,4 +162,3 @@ MESSAGE_TAGS = {
     messages.INFO: 'info',
 }
 
-django_heroku.settings(locals())
