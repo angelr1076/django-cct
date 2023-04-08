@@ -4,7 +4,7 @@ Designing and implementing a web application of your own with Python and JavaScr
 
 ## Case Crime Trace (CCT)
 
-(View Live)[https://angelr1076.pythonanywhere.com/, View Live]
+[View Live](https://angelr1076.pythonanywhere.com/)
 
 ### Requirements
 
