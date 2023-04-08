@@ -4,6 +4,8 @@ Designing and implementing a web application of your own with Python and JavaScr
 
 ## Case Crime Trace (CCT)
 
+[View Live](https://angelr1076.pythonanywhere.com/, View Live)
+
 ### Requirements
 
 In this project, you are asked to build a web application of your own. The nature of the application is up to you, subject to a few requirements:
