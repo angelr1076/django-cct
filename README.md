@@ -4,16 +4,6 @@ Designing and implementing a web application of your own with Python and JavaScr
 
 ## Case Crime Trace (CCT)
 
-### Requirements
-
-In this project, you are asked to build a web application of your own. The nature of the application is up to you, subject to a few requirements:
-
-- Your web application must be sufficiently distinct from the other projects in this course (and, in addition, may not be based on the old CS50W Pizza project), and more complex than those.
-  - A project that appears to be a social network is a priori deemed by the staff to be indistinct from Project 4, and should not be submitted; it will be rejected.
-  - A project that appears to be an e-commerce site is strongly suspected to be indistinct from Project 2, and your README.md file should be very clear as to why it’s not. Failing that, it should not be submitted; it will be rejected.
-- Your web application must utilize Django (including at least one model) on the back-end and JavaScript on the front-end.
-- Your web application must be mobile-responsive.
-
 ### The Project
 
 CCT utilizes Django on the back-end, and HTML, CSS and JavaScript on the front-end. The site is mobile responsive and fits all screen sizes from small mobile to wide-screen desktop presentations.
@@ -29,3 +19,12 @@ This app deviates from the Django projects assigned throughout the course since 
 The project consists of a static folder to house all static css, JavaScript and image files. There is also a separate webfonts folder for special icons used throughout CCT. Again, each model (Crime, Member, Suspects) has its own separate set of folders including URLS, models, admin, context processors, multiple-choice and views files. Templates are housed in their own individual folders with subfolders for each model representation.
 
 A requirements.txt file is included with the project and includes all required packages. Prior to starting the server, you will want to go to the root folder 'casecrimetrace' and be sure you are in the same folder that contains the manage.py file and run 'pip install -r requirements.txt' in the terminal. Once that's done, call 'python manage.py runserver' in the terminal to view the project. When logged in, users have the option to create a profile, but this is not mandatory. There is also a guest login if you choose not to register as a new user. The login name is guestuser and the password is guestpass.
+
+### To clone the repository and run the project:
+
+- Open your terminal.
+- Navigate to the directory where you want to clone the repository.
+- Run the following command: `git clone https://github.com/angelr1076/django-cct.git`
+- Navigate to the cloned directory: `cd django-cct`
+- Install the required dependencies: `pip install -r requirements.txt`
+- Run the server: `python manage.py runserver`
