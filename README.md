@@ -4,6 +4,8 @@ Designing and implementing a web application of your own with Python and JavaScr
 
 ## Case Crime Trace (CCT)
 
+View the [Project Live](https://angelr1076.pythonanywhere.com/)
+
 ### The Project
 
 CCT utilizes Django on the back-end, and HTML, CSS and JavaScript on the front-end. The site is mobile responsive and fits all screen sizes from small mobile to wide-screen desktop presentations.
