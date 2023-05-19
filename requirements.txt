@@ -14,3 +14,4 @@ sqlparse==0.4.3
 urllib3==1.26.15
 whitenoise==6.4.0
 gunicorn
+dj-database-url
