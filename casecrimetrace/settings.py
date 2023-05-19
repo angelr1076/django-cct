@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from django.contrib.messages import constants as messages
 from pathlib import Path
+from urllib.parse import urlparse
 import environ
 import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,13 +85,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'casecrimetrace.wsgi.application'
 
+# Get the DATABASE_URL from the environment variables
+database_url = os.getenv('DATABASE_URL')
+
+# Parse the DATABASE_URL to extract the database name
+url_parts = urlparse(database_url)
+database_name = url_parts.path.lstrip('/')
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-import os
-
-import os
 
 DATABASES = {
     'default': {
