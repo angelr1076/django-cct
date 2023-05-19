@@ -12,10 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from django.contrib.messages import constants as messages
 from pathlib import Path
-from urllib.parse import urlparse
 import environ
 import os
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,28 +83,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'casecrimetrace.wsgi.application'
 
-# Get the DATABASE_URL from the environment variables
-database_url = os.getenv('DATABASE_URL')
-
-# Parse the DATABASE_URL to extract the database name
-url_parts = urlparse(database_url)
-database_name = url_parts.path.lstrip('/')
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+DATABASE_URL = env("DATABASE_URL")
+PGDATABASE = env("PGDATABASE")
+PGUSER = env("PGUSER")
+PGPASSWORD = env("PGPASSWORD")
+PGHOST = env("PGHOST")
+PGPORT = env("PGPORT")
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_URL', ''),
-        'USER': os.getenv('PGUSER', ''),
-        'PASSWORD': os.getenv('PGPASSWORD', ''),
-        'HOST': os.getenv('PGHOST', ''),
-        'PORT': os.getenv('PGPORT', ''),
+        'URL': DATABASE_URL,
+        'NAME': PGDATABASE,
+        'USER': PGUSER,
+        'PASSWORD': PGPASSWORD,
+        'HOST': PGHOST,
+        'PORT': PGPORT,
     }
 }
-
-
 
 
 # Password validation
