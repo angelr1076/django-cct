@@ -99,7 +99,7 @@ PGPORT = env("PGPORT")
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'URL': DATABASE_URL,
         'NAME': PGDATABASE,
         'USER': PGUSER,
