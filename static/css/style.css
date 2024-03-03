@@ -1,5 +1,5 @@
 .btn-info {
-  background: #008080 !important; 
+  background: #008080 !important;
 }
 
 .btn-info:hover {
@@ -11,7 +11,8 @@
   color: white;
 }
 
-.save-crime, .save-suspect {
+.save-crime,
+.save-suspect {
   display: none;
 }
 
@@ -24,18 +25,18 @@
 }
 
 .crime-img {
-  width: 80%; 
-  border-radius:5px;
+  width: 80%;
+  border-radius: 5px;
 }
 
 .suspect-img {
-  width: 60%; 
-  border-radius:5px;
+  width: 60%;
+  border-radius: 5px;
 }
 
 .suspect-img__index {
-  width: 50%; 
-  border-radius:5px;
+  width: 50%;
+  border-radius: 5px;
 }
 
 a:hover {
@@ -43,8 +44,7 @@ a:hover {
 }
 
 .logo {
-  width: 85px; 
-  
+  width: 85px;
 }
 
 .navbar {
@@ -52,32 +52,34 @@ a:hover {
 }
 
 form {
-    display: inline; 
+  display: inline;
 }
 
 .cover-home {
   background: url(../img/lineup.jpeg) no-repeat top center fixed;
   min-height: 700px;
-  padding-top: 6rem; 
+  padding-top: 6rem;
 }
-  
+
 .services {
   background: url(../img/city.jpg) no-repeat top center fixed;
   min-height: 300px;
   position: relative;
-  overflow: hidden; }
-  .services::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-height: 100%;
-    width: 100%;
-    background: rgba(30, 139, 195, 0.7); 
+  overflow: hidden;
+}
+.services::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+  width: 100%;
+  background: rgba(30, 139, 195, 0.7);
 }
 
-.follow-crime, .report-crime, .track-suspects {
+.follow-crime,
+.report-crime,
+.track-suspects {
   text-decoration: none;
   color: white;
 }
-
