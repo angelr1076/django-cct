@@ -98,25 +98,25 @@ PGHOST = env("PGHOST")
 PGPORT = env("PGPORT")
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'URL': DATABASE_URL,
-#         'NAME': PGDATABASE,
-#         'USER': PGUSER,
-#         'PASSWORD': PGPASSWORD,
-#         'HOST': PGHOST,
-#         'PORT': PGPORT,
-#     }
-# }
-
-# For testing
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'URL': DATABASE_URL,
+        'NAME': PGDATABASE,
+        'USER': PGUSER,
+        'PASSWORD': PGPASSWORD,
+        'HOST': PGHOST,
+        'PORT': PGPORT,
     }
 }
+
+# For testing
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
