@@ -30,8 +30,8 @@ SECRET_KEY = env('SECRET_KEY')
 # DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['cct.up.railway.app']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['cct.up.railway.app']
 
 # Application definition
 INSTALLED_APPS = [
