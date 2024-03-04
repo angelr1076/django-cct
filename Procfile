@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn casecrimetrace.wsgi
+web: gunicorn casecrimetrace.wsgi
