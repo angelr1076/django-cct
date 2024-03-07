@@ -16,7 +16,6 @@
     </nav>
   </div>
 </section>
-
 <section id="suspect-table" class="py-4">
     <div class="container">
     {% if page_obj %}
@@ -76,57 +75,59 @@
             {% endfor %}
           </div>
           </table>
-            <nav aria-label="">
-              <ul class="pagination justify-content-center mt-3">
-              {% if page_obj.has_previous %}
-                  <li class="page-item">
-                  <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                </li>
-              {% else %}
-                  <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-              {% endif %}
-          
-              {% if page_obj.number|add:'-4' > 1 %}
-                  <li class="page-item"><a class="page-link" href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
-              {% endif %}
-          
-              {% for i in page_obj.paginator.page_range %}
-                  {% if page_obj.number == i %}
-                      <li class="page-item active" aria-current="page">
-                    <span class="page-link">
-                      {{ i }}
-                      <span class="sr-only">(current)</span>
-                    </span>
-                  </li>
-                  {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
-                       <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                  {% endif %}
-              {% endfor %}
-          
-              {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
-                 <li class="page-item"><a class="page-link" href="?page={{ page_obj.number|add:'5' }}">&hellip;</a></li>
-              {% endif %}
-          
-              {% if page_obj.has_next %}
-                  <li class="page-item">
-                  <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-                </li>
-              {% else %}
-                  <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-                </li>
-              {% endif %}
-            </ul>
-          </nav>
-          {% else %}
-          
-          <h2 class="display-4">No officers found in the database</h2>
-          <hr>
-          {% endif %}
         </div>
       </div>
     </div>
+  </section>
+  <section>
+    <nav aria-label="">
+      <ul class="pagination justify-content-center mt-3">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        {% endif %}
+    
+        {% if page_obj.number|add:'-4' > 1 %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+    
+        {% for i in page_obj.paginator.page_range %}
+        {% if page_obj.number == i %}
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">
+            {{ i }}
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %} <li class="page-item"><a class="page-link"
+            href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+          {% endfor %}
+    
+          {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.number|add:'5' }}">&hellip;</a></li>
+          {% endif %}
+    
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+          </li>
+          {% endif %}
+      </ul>
+    </nav>
+    {% else %}
+    
+    <h2 class="display-4">No officers found in the database</h2>
+    <hr>
+    {% endif %}
   </section>
 {% endblock %}

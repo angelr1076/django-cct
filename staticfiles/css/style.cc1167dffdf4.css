@@ -88,13 +88,13 @@ form {
 }
 
 .cover-home {
-  background: url(../img/lineup.jpeg) no-repeat top center fixed;
+  background: url("../img/lineup.27599da38dfd.jpeg") no-repeat top center fixed;
   min-height: 700px;
   padding-top: 6rem;
 }
 
 .services {
-  background: url(../img/city.jpg) no-repeat top center fixed;
+  background: url("../img/city.ca93c72fedce.jpg") no-repeat top center fixed;
   min-height: 300px;
   position: relative;
   overflow: hidden;

@@ -14,16 +14,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #008080;
+  background: #3c8484;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #006060;
-  border: 1px solid #008080;
+  background-color: #273d5f;
+  border: 1px solid #3c8484;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #006060;
+  background-color: #3c8484;
 }
 
 .btn-info {
