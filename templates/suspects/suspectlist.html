@@ -13,7 +13,7 @@
           <a href="{% url 'home' %}">Home</a>
         </li>
         <li class="breadcrumb-item">
-          <a href="{% url 'suspects' %}">All Suspects</a>
+          <a href="{% url 'suspects' %}">Go to Suspects On the Run</a>
         </li>
       </ol>
     </nav>
@@ -23,7 +23,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2>Suspects reported by you</h2>
+          <h2 style="text-align:center;">Suspects reported by you</h2>
           {% if page_obj %}
           <table class="table h6">
             <thead>
