@@ -1,8 +1,14 @@
-[phases.prebuild]
+[phases.setup]
 
 packages = [
-  "zlib",
-  "zlib.dev",
-  "libjpeg",
-  "libjpeg.dev"
+  "gcc",            # C compiler
+  "zlib",           # runtime
+  "zlib.dev",       # Pillow build headers
+  "jpeg",           # runtime (if you need JPEG)
+  "jpeg.dev",       # Pillow JPEG
+  "postgresql",     # runtime
+  "postgresql.dev", # psycopg2 build headers
 ]
+
+[phases.build]
+[phases.install]
