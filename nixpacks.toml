@@ -1,0 +1,8 @@
+[phases.prebuild]
+
+packages = [
+  "zlib",
+  "zlib.dev",
+  "libjpeg",
+  "libjpeg.dev"
+]
