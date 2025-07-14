@@ -1,1 +1,1 @@
-web: gunicorn casecrimetrace.wsgi
+web: gunicorn casecrimetrace.wsgi:application --bind 0.0.0.0:8000
