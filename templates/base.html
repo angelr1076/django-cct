@@ -18,26 +18,25 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-    <body class="lead">
-        
-        <!--Nav Bar-->
-        {% include 'partials/_navbar.html' %}
-        
-        <!--Alert-->
-        {% include 'partials/_alerts.html' %}
-
-        {% block content %}
-        <!--Html entry point-->
-        {% endblock %}
-        
-        <!--Footer-->
-        {% include 'partials/_footer.html' %}
-        
-        <!-- About Modal -->
-        {% include 'partials/_aboutmodal.html' %}
-        
-        <!-- Reg Modal -->
-        {% include 'partials/_regmodal.html' %}
+    <body class="lead d-flex flex-column min-vh-100">
+    
+      <!-- Navbar -->
+      {% include 'partials/_navbar.html' %}
+    
+      <!-- Alerts -->
+      {% include 'partials/_alerts.html' %}
+    
+      <!-- Main -->
+      <main class="flex-fill">
+        {% block content %}{% endblock %}
+      </main>
+    
+      <!-- Footer -->
+      {% include 'partials/_footer.html' %}
+    
+      <!-- Modals -->
+      {% include 'partials/_aboutmodal.html' %}
+      {% include 'partials/_regmodal.html' %}
         
         <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

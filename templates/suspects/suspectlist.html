@@ -23,7 +23,7 @@
 <section id="suspect-table" class="py-4">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 table-responsive">
           <h2>Suspects reported by you</h2>
           {% if page_obj %}
           <table class="table">
@@ -78,6 +78,8 @@
               </tbody>
               {% endfor %}
           </table>
+          </div>
+          <div class="container">
           <nav aria-label="">
               <ul class="pagination justify-content-center mt-3">
               {% if page_obj.has_previous %}
@@ -122,11 +124,12 @@
               {% endif %}
             </ul>
           </nav>
+        </div>
           {% else %}
           <h2 class="display-4 mb-5">No suspects reported</h2>
           {% endif %}
           <hr>
-        <a class="btn-warning btn-block btn-lg text-center text-light w-100 mb-3 p-2" data-toggle="modal" data-target="#inquiryModal"><i class="far fa-address-card mr-2"></i>Add Suspect To Database</a>
+        <a class="btn-warning btn-block btn-lg text-center text-light w-50 p-2 d-block mx-auto" data-toggle="modal" data-target="#inquiryModal"><i class="far fa-address-card mr-2"></i>Add Suspect To Database</a>
         </div>
       </div>
     </div>

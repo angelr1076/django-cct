@@ -24,7 +24,7 @@
     <div class="container">
     {% if page_obj %}
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 table-responsive">
           <h2>All Active Suspects</h2>
           <table class="table">
             <thead>
@@ -98,6 +98,8 @@
             {% endfor %}
           </div>
           </table>
+        </div>
+        <div class="container">
             <nav aria-label="">
               <ul class="pagination justify-content-center mt-3">
               {% if page_obj.has_previous %}
@@ -142,14 +144,15 @@
               {% endif %}
             </ul>
           </nav>
+        </div>
           {% else %}
           
           <h2 class="display-4">No suspects reported</h2>
           <hr>
           {% endif %}
           
-          <a class="btn-warning btn-block btn-lg text-center text-light w-100 p-2" data-toggle="modal" data-target="#inquiryModal"><i class="fas fa-mobile-alt mr-2"></i>Report A Suspect</a>
-        </div>
+          <a class="btn-warning btn-block btn-lg text-center text-light w-50 p-2 d-block mx-auto" data-toggle="modal" data-target="#inquiryModal"><i class="fas fa-mobile-alt mr-2"></i>Report A Suspect</a>
+        
       </div>
     </div>
   </section>

@@ -21,7 +21,7 @@
     <div class="container">
     {% if page_obj %}
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 table-responsive">
           <h2>All Officers</h2>
           <table class="table">
             <thead>
@@ -76,6 +76,8 @@
             {% endfor %}
           </div>
           </table>
+          </div>
+          <div class="container">
             <nav aria-label="">
               <ul class="pagination justify-content-center mt-3">
               {% if page_obj.has_previous %}
@@ -120,6 +122,7 @@
               {% endif %}
             </ul>
           </nav>
+        </div>
           {% else %}
           
           <h2 class="display-4">No officers found in the database</h2>
