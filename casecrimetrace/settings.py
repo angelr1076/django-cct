@@ -29,9 +29,11 @@ SECRET_KEY = env("SECRET_KEY", default="django-insecure-collectstatic-only")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG_VALUE") == "True"
 
-ALLOWED_HOSTS = ["cct-production.up.railway.app", "*"]
+ALLOWED_HOSTS = ["crimetrace.online", "www.crimetrace.online", "*"]
 
-CSRF_TRUSTED_ORIGINS = ["https://cct-production.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://crimetrace.online", "https://www.crimetrace.online"]
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Application definition
 
