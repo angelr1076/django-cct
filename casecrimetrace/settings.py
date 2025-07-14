@@ -14,7 +14,6 @@ from django.contrib.messages import constants as messages
 from pathlib import Path
 import environ
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,12 +24,13 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY", default="collectstatic-only")
+SECRET_KEY = env("SECRET_KEY", default="django-insecure-collectstatic-only")
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG_VALUE") == "True"
 
-ALLOWED_HOSTS = ["cct.up.railway.app", "*"]
+ALLOWED_HOSTS = ["cct-production.up.railway.app", "*"]
 
-CSRF_TRUSTED_ORIGINS = ["https://cct.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://cct-production.up.railway.app"]
 
 # Application definition
 
@@ -88,34 +88,25 @@ WSGI_APPLICATION = "casecrimetrace.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
+DATABASE_URL = env("DATABASE_URL")
+PGDATABASE = env("PGDATABASE")
+PGUSER = env("PGUSER")
+PGPASSWORD = env("PGPASSWORD")
+PGHOST = env("PGHOST")
+PGPORT = env("PGPORT")
+
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "URL": DATABASE_URL,
+        "NAME": PGDATABASE,
+        "USER": PGUSER,
+        "PASSWORD": PGPASSWORD,
+        "HOST": PGHOST,
+        "PORT": PGPORT,
     }
-else:
-    DATABASES = {"default": dj_database_url.config(default=os.getenv("DATABASE_URL"))}
-# DATABASE_URL = env("DATABASE_URL")
-# PGDATABASE = env("PGDATABASE")
-# PGUSER = env("PGUSER")
-# PGPASSWORD = env("PGPASSWORD")
-# PGHOST = env("PGHOST")
-# PGPORT = env("PGPORT")
-
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "URL": DATABASE_URL,
-#         "NAME": PGDATABASE,
-#         "USER": PGUSER,
-#         "PASSWORD": PGPASSWORD,
-#         "HOST": PGHOST,
-#         "PORT": PGPORT,
-#     }
-# }
+}
 
 
 # Password validation
