@@ -45,7 +45,7 @@
                    {% if suspect.mugshot %}
                     <td><img class="suspect-img" src="{{ suspect.mugshot.url }}"></td>
                   {% else %}
-                    <td><img class="suspect-img"src="{% static 'img/suspect.jpeg' %}"></td>
+                    <td><img class="suspect-img" src="{% static 'img/suspect.jpeg' %}"></td>
                   {% endif %}
                   <td>
                     <span id="confirmation-{{ suspect.id }}" class="confirmation alert alert-success mb-2"></span>
