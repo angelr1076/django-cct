@@ -43,7 +43,7 @@
                 <tr>
                   <td>{{ suspect.first_name }} {{ suspect.last_name }}</td>
                    {% if suspect.mugshot %}
-                    <td><img class="suspect-img" src="{{ suspect.mugshot.url }}"></td>
+                    <td><a class="" href="{% url 'suspect' suspect.id %}"><img class="suspect-img" src="{{ suspect.mugshot.url }}"></a></td>
                   {% else %}
                     <td><img class="suspect-img" src="{% static 'img/suspect.jpeg' %}"></td>
                   {% endif %}

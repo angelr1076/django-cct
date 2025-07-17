@@ -43,7 +43,8 @@
                 <tr>
                   <td>{{ crime.crime_type }}</td>
                   {% if crime.suspect %}
-                    <td><a href="{% url 'suspect' crime.suspect.id %}">{{ crime.suspect }}</a></td>
+                    <td><img class="suspect-img" src="{{ crime.suspect.mugshot.url }}" title="Suspect Image"></a><a
+                        href="{% url 'suspect' crime.suspect.id %}">{{ crime.suspect }}</a></td>
                     {% else %}
                     <td>Unknown</td>
                   {% endif %}

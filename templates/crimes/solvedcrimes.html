@@ -43,11 +43,12 @@
                 <tr>
                   <td>{{ crime.crime_type }}</td>
                   {% if crime.suspect %}
-                    <td><a href="{% url 'suspect' crime.suspect.id %}">{{ crime.suspect }}</a></td>
+                  <td><img class="suspect-img" src="{{ crime.suspect.mugshot.url }}" title="Suspect Image"></a><a
+                      href="{% url 'suspect' crime.suspect.id %}">{{ crime.suspect }}</a></td>
                     {% else %}
                     <td>Unknown</td>
                   {% endif %}
-                  <td><img src="{% static 'img/solved.png' %}"></td>
+                  <td><a class="" href="{% url 'crime' crime.id %}"><img src="{% static 'img/solved.png' %}" title="Solved Checkbox Image"></a></td>
                   <td>{{ crime.address }} <br>{{ crime.city }}, <br>{{ crime.state }}</td>
                   <td>
                     <span id="confirmation-{{ crime.id }}" class="confirmation alert alert-success mb-2"></span>

@@ -1,3 +1,19 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 .btn-info {
   background: #008080 !important;
 }
@@ -34,7 +50,7 @@
 }
 
 .suspect-img {
-  width: 100%;
+  width: 80%;
   border-radius: 5px;
 }
 
