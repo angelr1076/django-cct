@@ -4,7 +4,7 @@ Designing and implementing a web application of your own with Python and JavaScr
 
 ## Case Crime Trace (CCT)
 
-View the [Project Live](https://cct.up.railway.app/)
+View the [Project Live](https://crimetrace.online/)
 
 ### The Project
 
@@ -30,3 +30,4 @@ A requirements.txt file is included with the project and includes all required p
 - Navigate to the cloned directory: `cd django-cct`
 - Install the required dependencies: `pip install -r requirements.txt`
 - Run the server: `python manage.py runserver`
+
